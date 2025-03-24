@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <dl>
+        <div id="amt" onchange="changeamt()">
+            <dt>Amount You Need $
+                <input type="text" size="8" id="textamt">
+            <dd>
+                5000<input type="range" min="5000" max="100000" id="rangeamt">100000
+            </dd>
+            </dt>
+        </div>
+
+        <div id="year" onchange="changeyear()">
+            <dt>For
+                <input type="text" size="5" id="textyear">Years
+            <dd>
+                1<input type="range" min="1" max="5" id="rangeyear">5
+            </dd>
+            </dt>
+        </div>
+
+        <div id="interst" onchange="changeint()">
+            <dt>Interst Rate
+                <input type="text" size="3" id="textint">%
+            <dd>
+                1<input type="range" min="1" max="5" id="rangeint">5
+            </dd>
+            </dt>
+        </div>
+
+    </dl>
+    <button onclick="calculate()">
+        calculate EMI
+    </button>
+    <p id="info">
+
+    </p>
+    <script type="text/javascript">
+        function changeamt() {
+            let rangeamt = document.getElementById("rangeamt");
+            let textamt = document.getElementById("textamt");
+
+            textamt.value=rangeamt.value;
+            
+
+        }
+        function changeyear() {
+            let rangeyear =document.getElementById("rangeyear");
+            let textyear =document.getElementById("textyear");
+
+            textyear.value=rangeyear.value;
+        }
+        function changeint() {
+            let rangeint =document.getElementById("rangeint");
+            let textint =document.getElementById("textint");
+
+            textint.value=rangeint.value;
+
+        }
+
+
+        function calculate(){
+            let p=parseFloat(document.getElementById("rangeamt").value);
+            
+            let n=parseFloat(document.getElementById("rangeyear").value)*12;
+            
+            let r=parseFloat(document.getElementById("rangeint").value)/100/12;
+
+            let E= (p*r*(Math.pow((1+r),n))/(Math.pow((1+r),n))-1);
+
+            document.getElementById("info").textContent="Your Monthly EMI is $" + E.toFixed(2);
+        }
+    </script>
+</body>
+
+</html>
